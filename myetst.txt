@@ -1,1 +1,66 @@
-This is a tets file
+mahesh.akula@hdc3c-l-98WB103 MINGW64 ~/Desktop/Git (master)
+$ git config --global user.name "maheshakulaa"
+
+mahesh.akula@hdc3c-l-98WB103 MINGW64 ~/Desktop/Git (master)
+$ git config --global user.email maheshakula35@gmail.com
+
+mahesh.akula@hdc3c-l-98WB103 MINGW64 ~/Desktop/Git (master)
+$ git clone https://github.com/maheshakulaa/SplunkGit.git
+Cloning into 'SplunkGit'...
+fatal: unable to access 'https://github.com/maheshakulaa/SplunkGit.git/': Could not resolve host: github.com
+
+mahesh.akula@hdc3c-l-98WB103 MINGW64 ~/Desktop/Git (master)
+$ git clone https://github.com/maheshakulaa/SplunkGit.git
+Cloning into 'SplunkGit'...
+remote: Enumerating objects: 3, done.
+remote: Counting objects: 100% (3/3), done.
+remote: Total 3 (delta 0), reused 0 (delta 0), pack-reused 0
+Unpacking objects: 100% (3/3), 607 bytes | 7.00 KiB/s, done.
+
+mahesh.akula@hdc3c-l-98WB103 MINGW64 ~/Desktop/Git (master)
+$ cd SplunkGit/
+
+mahesh.akula@hdc3c-l-98WB103 MINGW64 ~/Desktop/Git/SplunkGit (master)
+$ ls
+README.md
+
+mahesh.akula@hdc3c-l-98WB103 MINGW64 ~/Desktop/Git/SplunkGit (master)
+$ vi myetst.txt
+
+mahesh.akula@hdc3c-l-98WB103 MINGW64 ~/Desktop/Git/SplunkGit (master)
+$ git add myetst.txt
+warning: LF will be replaced by CRLF in myetst.txt.
+The file will have its original line endings in your working directory
+
+mahesh.akula@hdc3c-l-98WB103 MINGW64 ~/Desktop/Git/SplunkGit (master)
+$ git status
+On branch master
+Your branch is up to date with 'origin/master'.
+
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+        new file:   myetst.txt
+
+
+mahesh.akula@hdc3c-l-98WB103 MINGW64 ~/Desktop/Git/SplunkGit (master)
+$ git commit -m "first commit" myetst.txt
+warning: LF will be replaced by CRLF in myetst.txt.
+The file will have its original line endings in your working directory
+[master cc10717] first commit
+ 1 file changed, 1 insertion(+)
+ create mode 100644 myetst.txt
+
+mahesh.akula@hdc3c-l-98WB103 MINGW64 ~/Desktop/Git/SplunkGit (master)
+$ git push -u origin master
+Enumerating objects: 4, done.
+Counting objects: 100% (4/4), done.
+Delta compression using up to 8 threads
+Compressing objects: 100% (2/2), done.
+Writing objects: 100% (3/3), 294 bytes | 32.00 KiB/s, done.
+Total 3 (delta 0), reused 0 (delta 0), pack-reused 0
+To https://github.com/maheshakulaa/SplunkGit.git
+   73ed43b..cc10717  master -> master
+Branch 'master' set up to track remote branch 'master' from 'origin'.
+
+mahesh.akula@hdc3c-l-98WB103 MINGW64 ~/Desktop/Git/SplunkGit (master)
+$
