@@ -1,0 +1,169 @@
+-->INPUT
+-->PARSING --> parsing, merging, typing
+-->INDEXING
+-->SEARCHING
+
+
+
+-->What is Splunk?
+-->Single site, multisite clustering
+-->Ports in Splunk
+		▪ 8000 – Web port
+		▪ 8089 – Management port
+		▪ 8191 – KV store port
+		▪ 8181 – Search Head clustering port
+		▪ 8065 – App server port
+		▪ 8080 – Index replication port
+		▪ 9997 – Indexer receiving port
+		514 -UDP port
+-->Types of splunk indexes? and its use cases.
+		( _internal --> monitor splunk internal logs ad metrics,_introspection--> to track performance and splunk resource usage,_audit--> stores splunk audit trails, user related search 	queries, _thefishbucket--> contains checkpoint information for file monitoring scripts, summary-> this is the default index for summary indexing system)
+-->How log parsing is done? pipelines and queues
+	filemonitor: Tailing processor
+	script: exec processor
+	modular input: mod input processor
+	HEC: HEC processor
+	TCP/UPD: TCP/UPD processor
+-->Types of alerts? --> scheduled and realtime alerts.
+-->Types of dashboards?
+		Dynamic form-based dashboards.
+		Static real-time dashboards.
+		Dashboards as scheduled reports.
+-->Splunk architecture? licensing concept? how much data?
+-->Commands in splunk?
+		(tstats, stats eventstats streamstats timechart,chart,eval, xyseries,rex,regex,erex, geom,geostats,inputlookup, lookup, outputlookup,multivalues,round, floor, rest,search, where,fields, append,appendpipe,appendcols,fillnull,filldown,makeresults, gentimes,spath,join,selfjoin,map...)
+-->Custom commands?
+-->Summary index? (sourcetype=stash)
+-->Types of lookups: csv,KVstore,geospatial,external (lookup table--> lookup definition-->automatic lookups)
+		(KV store Lookup)
+		collections.conf:
+		[kvstorecoll]
+		enforceTypes = true
+		field.name = string
+		field.id = number
+		field.address_street = string
+		field.address_city = string
+		field.address_state = string
+		field.address_zip = string
+		
+		transforms.conf
+		[<lookup_name>]
+		external_type = kvstore
+		collection = kvstorecoll
+		case_sensitive_match = <bool>
+		fields_list = <string>
+		filter = <string>
+-->CIM (Common Information Model):
+	It is  Common Information Model tool that splunk supports to normalize the data to enhance/maximum the efficiency at search time.
+-->Rest API?
+-->CLI commands and usage to debug issues
+-->Btool --> it is a command line tool which is used to troubleshoot and help with configuration file issues, can be used to see what values are being used by your splunk instance.
+		Here are some limitations to btool:
+		    The btool command only accepts one conf file at a time for analysis. See List of configuration files in the Admin Manual. To search for configurations across multiple conf files, use your operating system's search tool.
+		    If the user running btool does not have read access to a conf file due to permission issues, the settings in those files are not shown in the report.
+		    The switch btool --app does not consider metadata inheritance, and misreports settings that are inherited from other apps.
+		    The switch btool --user must be used with switch btool --app. If a user is set, an app context must also be set.
+		    The switch btool --user does not consider knowledge object permissions when evaluating the user.
+		    Additional resources
+To check configurations: splunk btool check
+		
+	
+		
+		
+-->Splunk app creation, Technical addons.( maps+, network diagram vix, flow map viz, git for Splunk are some of the apps which we used from splunkbase)
+-->Regular Expressions,
+-->field extractions(props.conf, transforms.conf)
+-->Versioning in Splunk(dashboards, apps, and someother knowledge objects)
+-->Integration of Splunk with Service now and DB Connect, Dynatrace.
+--> Dispatch folder in Splunk and its uses. (C:\Program Files\Splunk\var\run\splunk\dispatch)
+--> HTTP event collectors.(tokens,channels…)
+
+
+Also participated and developed a prototype for idea "Agni netra" for GTCI (Global Talent Competitiveness Index)
+Splunk components(forwarders, indexers, SH, ClusterMaster, Deployment server, Deployer)
+Buckets concepts(hot warm cold frozen/thawed)
+Maintenance Mode in splunk during migrations?
+
+Sample Architectural View:
+70 -ind (site-1 & site-2) - 1 indexer master, 1 license master
+70 - fwd (az-1 & az-2) - 1 deployment server
+7 searchheads's - 1 sh-dp
+these are all in cloud
+on-prem, 1 DS - 60+ fwd (UF/HF)
+10TB License environment.
+
+
+Types of searches in Splunk:
+	Adhoc search
+	Realtime adhoc search
+	Scheduled search
+	Saved search
+	Remote search
+	Realtime search
+	Replicated search
+	Replicated scheduled search
+	Report acceleration search
+
+
+Users and Roles
+Authentication methods
+
+
+
+Realtime experience:
+	Order processing end to end flow
+	API monitoring/analysing 
+	Server health checks using our customised dashboard named "control centre"
+	SSL certificate dashboards: 
+
+
+
+
+why aditi?
+
+File checksum configuration
+
+CHECK_METHOD = [endpoint_md5|entire_md5|modtime]
+* Set CHECK_METHOD to "endpoint_md5" to have Splunk software perform a checksum
+  of the first and last 256 bytes of a file. When it finds matches, Splunk
+  software lists the file as already indexed and indexes only new data, or
+  ignores it if there is no new data.
+* Set CHECK_METHOD to "entire_md5" to use the checksum of the entire file.
+* Set CHECK_METHOD to "modtime" to check only the modification time of the
+  file.
+* Settings other than "endpoint_md5" cause Splunk software to index the entire
+  file for each detected change.
+* This option is only valid for [source::<source>] stanzas.
+* This setting applies at input time, when data is first read by Splunk
+  software, such as on a forwarder that has configured inputs acquiring the
+  data.
+* Default: endpoint_md5
+initCrcLength = <integer>
+* See documentation in inputs.conf.spec.
+
+From <https://docs.splunk.com/Documentation/Splunk/8.0.6/Admin/Propsconf> 
+
+
+crcSalt = <string>
+* Use this setting to force the input to consume files that have matching CRCs
+  (cyclic redundancy checks).
+    * By default, the input only performs CRC checks against the first 256
+      bytes of a file. This behavior prevents the input from indexing the same
+      file twice, even though you might have renamed it, as with rolling log
+      files, for example. Because the CRC is based on only the first
+      few lines of the file, it is possible for legitimately different files
+      to have matching CRCs, particularly if they have identical headers.
+* If set, <string> is added to the CRC.
+* If set to the literal string "<SOURCE>" (including the angle brackets), the
+  full directory path to the source file is added to the CRC. This ensures
+  that each file being monitored has a unique CRC. When crcSalt is invoked,
+  it is usually set to <SOURCE>.
+* Be cautious about using this setting with rolling log files; it could lead
+  to the log file being re-indexed after it has rolled.
+* In many situations, initCrcLength can be used to achieve the same goals.
+* Default: empty string.
+
+From <https://community.splunk.com/t5/Getting-Data-In/What-is-crc-Salt-means-and-in-which-case-its-used/m-p/399987> 
+
+
+
