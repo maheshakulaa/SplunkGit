@@ -1,0 +1,132 @@
+<form script="testscript.js" stylesheet="testCSS.css">
+  <label>TestDashboard_JS_CSS</label>
+  <row>
+    <panel>
+      <!--html>
+        <style>
+          /* CSS for table response_time_highlight_icon */
+          #response_time_highlight_icon td.icon {
+              text-align: center;
+          }
+          #response_time_highlight_icon td.icon i {
+              font-size: 25px;
+              text-shadow: 1px 1px #aaa;
+          }
+          #response_time_highlight_icon td.icon .severe {
+              color: indianred;
+          }
+          #response_time_highlight_icon td.icon .elevated {
+              color: orange;
+          }
+          #response_time_highlight_icon td.icon .low {
+              color: #lightgreen ;
+          }
+
+          /* CSS for table response_time_highlight_cell */
+          #response_time_highlight_cell td.range-low {
+              background-color: lightgreen !important;
+          }
+          #response_time_highlight_cell td.range-elevated {
+              background-color: orange !important;
+              font-weight: bold;
+          }
+          #response_time_highlight_cell td.range-severe {
+              background-color: indianred !important;
+              font-weight: bold;
+          }
+
+          /* CSS for table response_time_highlight_row */
+          #response_time_highlight_row tr td {
+              background-color: lightgreen !important;
+          }
+          #response_time_highlight_row tr.range-elevated td {
+              background-color: orange !important;
+          }
+          #response_time_highlight_row tr.range-severe td {
+              background-color: indianred !important;
+          }
+          #response_time_highlight_row .table td {
+              border-top: 1px solid #fff;
+          }
+        </style>
+      </html-->
+      <table id="response_time_highlight_icon">
+        <search>
+          <query>|  makeresults
+|  eval data="A/P - Close Module - FM1,1,7.52,2.00,6.00;A/P - Diagnosis- Run Search - FM1,2,4.01,100.00,100.00;A/P - Sample Test - FM1,3,4.5,3.00,6.00;"
+|  makemv data delim=";" 
+|  mvexpand data
+|  eval data=split(data,",")
+|  eval Transaction=mvindex(data,0),count=mvindex(data,1),"Average Response Time"=mvindex(data,2),Objective=mvindex(data,3),Threshold=mvindex(data,4)
+|  table Transaction count "Average Response Time" Objective Threshold
+|  eval "Average Response Time SLA"=case('Average Response Time'&gt;=Threshold,"severe",'Average Response Time'&lt;Threshold AND 'Average Response Time'&gt;=Objective,"elevated",true(),"low")</query>
+          <earliest>-24h@h</earliest>
+          <latest>now</latest>
+          <sampleRatio>1</sampleRatio>
+        </search>
+        <option name="count">10</option>
+        <option name="dataOverlayMode">none</option>
+        <option name="drilldown">none</option>
+        <option name="percentagesRow">false</option>
+        <option name="refresh.display">progressbar</option>
+        <option name="rowNumbers">false</option>
+        <option name="totalsRow">false</option>
+        <option name="wrap">true</option>
+      </table>
+    </panel>
+  </row>
+  <row>
+    <panel>
+      <table id="response_time_highlight_cell">
+        <search>
+          <query>|  makeresults
+|  eval data="A/P - Close Module - FM1,1,7.52,2.00,6.00;A/P - Diagnosis- Run Search - FM1,2,4.01,100.00,100.00;A/P - Sample Test - FM1,3,4.5,3.00,6.00;"
+|  makemv data delim=";" 
+|  mvexpand data
+|  eval data=split(data,",")
+|  eval Transaction=mvindex(data,0),count=mvindex(data,1),"Average Response Time"=mvindex(data,2),Objective=mvindex(data,3),Threshold=mvindex(data,4)
+|  table Transaction count "Average Response Time" Objective Threshold
+|  eval "Average Response Time SLA"=case('Average Response Time'&gt;=Threshold,"severe",'Average Response Time'&lt;Threshold AND 'Average Response Time'&gt;=Objective,"elevated",true(),"low")</query>
+          <earliest>-24h@h</earliest>
+          <latest>now</latest>
+          <sampleRatio>1</sampleRatio>
+        </search>
+        <option name="count">10</option>
+        <option name="dataOverlayMode">none</option>
+        <option name="drilldown">none</option>
+        <option name="percentagesRow">false</option>
+        <option name="refresh.display">progressbar</option>
+        <option name="rowNumbers">false</option>
+        <option name="totalsRow">false</option>
+        <option name="wrap">true</option>
+      </table>
+    </panel>
+  </row>
+  <row>
+    <panel>
+      <table id="response_time_highlight_row">
+        <search>
+          <query>|  makeresults
+|  eval data="A/P - Close Module - FM1,1,7.52,2.00,6.00;A/P - Diagnosis- Run Search - FM1,2,4.01,100.00,100.00;A/P - Sample Test - FM1,3,4.5,3.00,6.00;"
+|  makemv data delim=";" 
+|  mvexpand data
+|  eval data=split(data,",")
+|  eval Transaction=mvindex(data,0),count=mvindex(data,1),"Average Response Time"=mvindex(data,2),Objective=mvindex(data,3),Threshold=mvindex(data,4)
+|  table Transaction count "Average Response Time" Objective Threshold
+|  eval "Average Response Time SLA"=case('Average Response Time'&gt;=Threshold,"severe",'Average Response Time'&lt;Threshold AND 'Average Response Time'&gt;=Objective,"elevated",true(),"low")</query>
+          <earliest>-24h@h</earliest>
+          <latest>now</latest>
+          <sampleRatio>1</sampleRatio>
+        </search>
+        <option name="count">10</option>
+        <option name="dataOverlayMode">none</option>
+        <option name="drilldown">none</option>
+        <option name="percentagesRow">false</option>
+        <option name="refresh.display">progressbar</option>
+        <option name="rowNumbers">false</option>
+        <option name="totalsRow">false</option>
+        <option name="wrap">true</option>
+      </table>
+    </panel>
+  </row>
+</form>

@@ -1,0 +1,101 @@
+<form script="testscript.js,iconRender.js" stylesheet="testCSS.css,iconRender.css">
+  <label>Demo_DashboardJS</label>
+  <description>The test dashboard1</description>
+  <search id="basesearch">
+    <query>index=_internal sourcetype=splunkd</query>
+    <earliest>$field1.earliest$</earliest>
+    <latest>$field1.latest$</latest>
+  </search>
+  <fieldset submitButton="false">
+    <input type="time" token="field1" id="timeid">
+      <label>Select time range</label>
+      <default>
+        <earliest>-24h@h</earliest>
+        <latest>now</latest>
+      </default>
+    </input>
+  </fieldset>
+  <row>
+    <panel>
+      <title>row 1 panel 1</title>
+       <html>
+        <div class="icon-user">
+          <i class="icon-user" style="font-size:1em; color:green"/>
+              <p style="background-color:AliceBlue;">
+              <font face="Verdana" color="Black">
+              <u>
+                <b>Feature:</b>
+              </u>
+              Content<br/>
+            </font>
+                <font face="Verdana" color="Black">
+              <u>
+                <b>Data Source:</b>
+              </u>
+            </font> <em>
+              <b>Ticket data $field1.earliest$</b>.</em>                                               
+            <br/>
+          </p>
+        </div>
+        </html>
+      <table id="splunk_table">
+        <title>Chart...</title>
+        <search base="basesearch">
+          <query>| dedup source |table source,sourcetype</query>
+        </search>
+        <option name="drilldown">none</option>
+        <option name="refresh.display">progressbar</option>
+      </table>
+    </panel>
+    <panel>
+      <title>Row2 panel1</title>
+      <html>
+        <div class="icon-user">
+          <i class="icon-user" style="font-size:1em; color:#FF0000; background-color: yellow"/>
+              <p style="background-color:AliceBlue;">
+              <font face="Verdana" color="Black">
+              <u>
+                <b>Feature:</b>
+              </u>
+              Content<br/>
+            </font>
+                <font face="Verdana" color="Black">
+              <u>
+                <b>Data Source:</b>
+              </u>
+            </font> <em>
+              <b>Ticket data $field1.earliest$</b>.</em>                                               
+            <br/>
+          </p>
+        </div>
+        </html>
+      <chart>
+        <title>Table</title>
+        <search base="basesearch">
+          <query>| stats count as c1 by source</query>
+        </search>
+        <option name="charting.axisY.scale">log</option>
+        <option name="charting.chart">bar</option>
+        <option name="charting.chart.showDataLabels">minmax</option>
+        <option name="charting.drilldown">none</option>
+        <option name="charting.layout.splitSeries">1</option>
+        <option name="refresh.display">progressbar</option>
+      </chart>
+    </panel>
+    <panel>
+      <table>
+        <search>
+          <query>| makeresults | eval A="UP" | eval B="DOWN" | eval C="UNKNOWN" | eval D="N/A" | eval E="WARN" | eval F="UP" |eval G="DOWN"| fields - _time</query>
+          <earliest>-24h@h</earliest>
+          <latest>now</latest>
+        </search>
+        <option name="drilldown">none</option>
+      </table>
+      <html>
+        <div class="text-box">
+    <a href="#" class="btn btn-white btn-animate">click me</a>
+        </div>
+      </html>
+    </panel>
+  </row>
+</form>

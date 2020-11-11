@@ -1,0 +1,456 @@
+/*below splunk_table_id is used in splunk dashbaord xml this is not dependent in JS */
+#splunk_table tr td{
+    background-color:#0B3077;
+    color:white;
+    font-style:oblique;
+    font-family: cursive;
+    font-weight: bold;
+    /*border: darksalmon;
+    border-style: groove;*/
+    border-radius: 9px;
+    border-width: thin;
+    border-spacing: 10px;
+}
+
+#splunk_table {
+    background-color: #1D77AF;
+    border-radius: 10px;
+    border-width: thin;
+    border-spacing: 10px;
+}
+
+#splunk_table th{
+    background-color:#83e1e7;
+    color:black;
+    font-style:oblique ;
+    font-weight: bold;
+    border-radius: 10px;
+    border-width: thick;
+    border-spacing: 5px;
+}
+
+.table tr td{
+    background-color:indianred;
+    color:indianred;
+    font-style:oblique;
+    font-family: cursive;
+    font-weight: bold;
+    /*border: darksalmon;
+    border-style: groove;*/
+    border-radius: 9px;
+    border-width: thin;
+    border-spacing: 10px;
+}
+.table th {
+    background-color:indianred;
+    color:blue;
+    font-style:oblique;
+    font-size: 23px;
+    font-family: cursive;
+    font-weight: bold;
+    /*border: darksalmon;
+    border-style: groove;*/
+    border-radius: 9px;
+    border-width: thin;
+    border-spacing: 10px;
+}
+
+
+
+/*CSS for table response_time_highlight_icon */
+#response_time_highlight_icon td.icon {
+    text-align: center;
+}
+#response_time_highlight_icon td.icon i {
+    font-size: 25px;
+    text-shadow: 1px 1px #aaa;
+}
+#response_time_highlight_icon td.icon .severe {
+    color: indianred;
+}
+#response_time_highlight_icon td.icon .elevated {
+    color: orange;
+}
+#response_time_highlight_icon td.icon .low {
+    color: lightgreen ;
+}
+
+/* CSS for table response_time_highlight_cell */
+#response_time_highlight_cell td.range-low {
+    background-color: lightgreen;
+}
+#response_time_highlight_cell td.range-elevated {
+    background-color: orange;
+    font-weight: bold;
+}
+#response_time_highlight_cell td.range-severe {
+    background-color: indianred;
+    font-weight: bold;
+}
+
+/* CSS for table response_time_highlight_row */
+#response_time_highlight_row tr td {
+   background-color: lightgreen; 
+}
+#response_time_highlight_row tr.range-elevated td {
+    background-color: orange;
+}
+#response_time_highlight_row tr.range-severe td {
+    background-color: indianred;
+}
+#response_time_highlight_row .table td {
+    border-top: 1px solid #fff;
+} 
+
+#response_time_highlight_row th { 
+    background-color:#0B3077;
+    color:white;
+    font-style:oblique ;
+    font-weight: bold;
+}
+#response_time_highlight_icon{
+    background-color: lightgreen;
+}
+
+
+
+#timeid{
+    background-color: #0B3077; 
+    border-radius: 9px;
+    padding-right:50px;
+    padding-left:50px;
+    padding-bottom: 10px;
+}
+
+#timeid button[class^="ButtonStyles"],
+button[class^="CollapsiblePanelStyles"]{
+    background-color: lightgreen; 
+    border-radius: 20px;
+    padding-left: 10px;
+}
+
+/* when hovering it will change background color of time picker (not dropdown)
+#timeid:hover {
+    background:red;
+}
+
+*/
+
+#timeid button[class^="ButtonStyles"]:hover{
+    background:red; 
+}
+
+#timeid button[class^="ButtonStyles"]:active{
+    background: #7F8C8D;
+    top: 2px;
+}
+
+
+/*###########################https://webdeasy.de/top-css-buttons/###############################*/
+
+
+.btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(226, 212, 7, 0.2);
+}
+
+.btn:active {
+    transform: translateY(-1px);
+    box-shadow: 0 5px 10px rgba(20, 190, 62, 0.2);
+}
+
+.btn-white {
+    background-color: #fff;
+    color: #777;
+}
+
+.btn::after {
+    content: "";
+    display: inline-block;
+    height: 100%;
+    width: 100%;
+    border-radius: 100px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    transition: all .4s;
+}
+
+.btn-white::after {
+    background-color: rgb(199, 15, 15);
+}
+
+.btn:hover::after {
+    transform: scaleX(1.4) scaleY(1.6);
+    opacity: 0;
+}
+
+.btn-animated {
+    animation: moveInBottom 5s ease-out;
+    animation-fill-mode: backwards;
+}
+
+.dashboard-body{
+    background-image: url('/static/app/search/appIconAlt_2x.png');
+}
+
+div[data-test^="real-time-column"],[data-test^="other-column"],div[data-test-panel-id="realTime"],div[data-test-panel-id^="advanced"]{
+    display:none;
+}
+
+
+div[data-view^="views/dashboard/Master"],div[data-view^="views/dashboard/layout/Panel"],div[class^="dashboard-cell dashboard-layout-panel last-visible"],div[class^="main-section-body dashboard-body"],div[data-view^="views/shared/splunkbar/noconnection/Master"]{
+
+    background-image: url("/static/app/search/animal.jpg");
+    background-repeat: no-repeat;
+    background-size: 100%;
+    color:white;
+    font-weight: bold;
+}
+
+/*
+div[class^="main-section-body dashboard-body"],div[data-view^="views/shared/splunkbar/noconnection/Master"]{
+    background-color: rgb(134, 139, 125);; 
+}*/
+div[data-view^="views/dashboard/layout/Panel"],div[data-view^="views/dashboard/element/DashboardElement"],div[id^="highcharts-t8o05z8-6"]{
+    /* background-image: url("/static/app/search/bird.jpg"); */
+
+}
+
+rect {
+    fill:none;
+    }
+
+
+div[id^="highcharts-bxgr572-6"]{
+    color:white;
+    font-size: 30px;
+}
+text[class^="highcharts-axis-title"]{
+    color:red;
+}
+
+path{
+    fill:rgb(228, 201, 177);
+    color:red;
+    stroke-opacity: 40;
+    font-optical-sizing: 30px;
+    opacity: 5;
+    font-size: 30px;
+    
+
+}
+g.highcharts-axis g.highcharts-xaxis{
+    fill: yellowgreen;
+    color: red;
+
+}
+
+h3[data-view^="views/dashboard/element/Title"]{
+    color:pink;
+}
+
+div[data-view^="views/dashboard/element/Header"]{
+    background-color: yellow;
+    font-size: 30px;
+    color: maroon;
+}
+
+
+
+/*----------------------------------------------*/
+
+.highcharts-color-1 {
+	fill: #90ed7d;
+	stroke: #90ed7d;
+}
+.highcharts-axis.highcharts-color-1 .highcharts-axis-line {
+	stroke: maroon;
+}
+.highcharts-axis.highcharts-color-1 text {
+	fill: red;
+}
+/*for panel 2 X,Y axis labels*/
+.highcharts-axis-title{ 
+    stroke: #90ed7d;
+}
+/* for x,yais values*/
+.highcharts-axis-labels.highcharts-xaxis-labels,.highcharts-axis-labels.highcharts-yaxis-labels {
+    stroke: lightcoral; 
+    font-family: cursive;
+    font-weight: bold;
+}
+.highcharts-legend-item.highcharts-bar-series.highcharts-color-undefined.highcharts-series-0 {
+    stroke: rgb(111, 1, 236); 
+    font-family: cursive;
+    font-weight: bold;
+}
+
+.highcharts-grid-line{
+    stroke-width: 2px;
+    stroke:whitesmoke;
+    opacity: 50%;
+}
+
+.highcharts-series.highcharts-series-0.highcharts-bar-series.highcharts-color-undefined {
+    opacity: 50%;
+}
+
+/*#################################################################*/
+
+.help-tip {
+    border: 1px solid #ffffff;
+    right: 10px;
+    bottom: 32px;
+    text-align: center;
+    border-radius: 50%;
+    width: 18px;
+    height: 18px;
+    font-size: 14px;
+    cursor: default;
+    position: absolute;
+    z-index: 1000;
+    line-height: 18px;
+  }
+  
+  .help-tip:before {
+    content: '?';
+    font-weight: bold;
+    color: #ffffff;
+  }
+  
+  .help-tip:hover p {
+    display: block;
+    transform-origin: 100% 0%;
+    -webkit-animation: fadeIn 0.3s ease-in-out;
+    animation: fadeIn 0.3s ease-in-out;
+  }
+  
+  .help-tip p {
+    padding-left: 10px !important;
+    padding-top: 10px !important;
+    padding-bottom: 10px !important;
+    padding-right: 10px !important;
+    text-align: left;
+    right: -40%;
+    display: none;
+    background-color: #f1f1f1;
+    width: 375px;
+    position: absolute;
+    border-radius: 3px;
+    box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+    color: #425d7f;
+    font-size: 12px;
+  }
+  
+  .help-tip p:before {
+    position: absolute;
+    content: '';
+    width: 0;
+    height: 0;
+    border: 6px solid transparent;
+    border-bottom-color: #425d7f;
+    right: 2%;
+    top: -12px;
+  }
+  
+  .help-tip p:after {
+    width: 100%;
+    height: 40px;
+    content: '';
+    position: absolute;
+    top: -40px;
+    left: 0;
+  }
+
+  /*===========================*/
+  div.icon-user {
+    border: 1px solid #ffffff;
+    right: 10px;
+    bottom: 32px;
+    text-align: center;
+    border-radius: 50%;
+    width: 18px;
+    height: 18px;
+    font-size: 14px;
+    cursor: default;
+    position: absolute;
+    z-index: 1000;
+    line-height: 10px;
+    
+  }
+  
+  div.icon-user:before {
+    font-weight: bold;
+    color: #ffffff;
+  }
+  
+  div.icon-user:hover p {
+    display: block;
+    transform-origin: 50% 0%;
+    -webkit-animation: fadeIn 0.3s ease-in-out;
+    animation: fadeIn 0.3s ease-in-out;
+  }
+  
+  div.icon-user p {
+    padding-left: 10px !important;
+    padding-top: 10px !important;
+    padding-bottom: 10px !important;
+    padding-right: 10px !important;
+    text-align: left;
+    right: -10%;
+    display: none;
+    background-color: #f1f1f1;
+    width: 375px;
+    position: absolute;
+    border-radius: 3px;
+    box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+    color: #425d7f;
+    font-size: 12px;
+  }
+  
+  div.icon-user p:before {
+    position: absolute;
+    content: '';
+    width: 0;
+    height: 0;
+    border: 6px solid transparent;
+    border-bottom-color: #425d7f;
+    right: 2%;
+    top: -12px;
+  }
+  
+  div.icon-user p:after {
+    width: 100%;
+    height: 40px;
+    content: '';
+    position: absolute;
+    top: -40px;
+    left: 0;
+  }
+
+  div.icon-user i {
+        padding-left: 2px !important;
+        padding-top: 2px !important;
+        padding-bottom: 2px !important;
+        padding-right: 2px !important;
+        text-align: left;
+        right: 10px;
+        display: block;
+        background-color: black;
+        font-size: 5px;
+        width: 10px;
+        position: static;
+        border-radius: 3px;
+        box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+        color: #425d7f;
+        
+  }
+
+  div[data-test^="popover"] {
+      box-sizing: content-box;
+      -webkit-box-sizing: inherit;
+  }
+
+

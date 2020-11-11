@@ -1,0 +1,95 @@
+<dashboard script="splunkWFW.js" stylesheet="collapsibleWFW.css">
+  <label>COllapsible_dashboard_WFW</label>
+  <search id="basesearchxml">
+    <query>
+      index=_internal
+    </query>
+    <earliest>-24h@h</earliest>
+    <latest>now</latest>
+    <sampleRatio>1</sampleRatio>
+  </search>
+  <row>
+    <panel>
+      <html>
+        <style>
+          
+  #row1.dashboard-row #panel1 .dashboard-panel .panel-head h3 {
+    line-height: 1;
+    margin: 0;
+    padding: 12px 55px 10px 12px;
+    text-rendering: initial;
+    word-wrap: break-word;
+    font-weight: bold;
+    font-size: 50px;
+    color: white;
+    text-align: left;
+}
+
+#row1.dashboard-row #panel2 .dashboard-panel .panel-head h3 {
+  line-height: 1;
+  margin: 0;
+  padding: 12px 55px 10px 12px;
+  text-rendering: initial;
+  word-wrap: break-word;
+  font-weight: bold;
+  font-size: 50px;
+  color: red;
+  text-align: right;
+}
+
+        </style>
+      </html>
+      <table>
+        <title>tabular view</title>
+        <search>
+          <query>| rest /services/authentication/users | table title roles | rename title as user | mvexpand roles
+| join type=left roles [rest /services/authorization/roles | table title srchIndexesAllowed srchIndexesDefault | rename title as roles]
+| makemv srchIndexesAllowed tokenizer=(\S+) | makemv srchIndexesDefault tokenizer=(\S+)
+| fillnull value=" "
+| mvexpand srchIndexesAllowed | mvexpand srchIndexesDefault
+| join type=left max=999 srchIndexesAllowed [rest /services/data/indexes | table title | eval srchIndexesAllowed = if(match(title, "^_"), "_*", "*") | rename title as IndexesAllowed]
+| join type=left max=999 srchIndexesDefault [rest /services/data/indexes | table title | eval srchIndexesDefault = if(match(title, "^_"), "_*", "*") | rename title as IndexesDefault]
+| stats values(*) as * by user
+| foreach srch* [eval &lt;&lt;FIELD&gt;&gt; = mvappend(&lt;&lt;FIELD&gt;&gt;, &lt;&lt;MATCHSTR&gt;&gt;) | eval &lt;&lt;FIELD&gt;&gt; = mvfilter(match(&lt;&lt;FIELD&gt;&gt;, "^[^*]+$"))]
+| fields - Indexes*
+| eval srchIndexesAllowed=mvjoin(srchIndexesAllowed,"  ")
+|  eval srchIndexesDefault=mvjoin(srchIndexesDefault,"  ")</query>
+          <earliest>-15m</earliest>
+          <latest>now</latest>
+        </search>
+        <option name="drilldown">none</option>
+      </table>
+    </panel>
+  </row>
+  <row>
+    <panel>
+      <html>
+        <div class="accordion-item-header">columnchart -- For this panel base search and pos process search is form JS</div>
+        <div class="accordion-item-body" id="count_by_sourcetype_source"/>
+      </html>
+    </panel>
+    <panel id="accordion">
+      <html>
+        <div class="accordion-item-header">Linechart -- For this panel base search and pos process search is form JS</div>
+        <div class="accordion-item-body" id="line_chart_count_by_source"/>
+      </html>
+    </panel>
+    <panel>
+      <html>
+        <div class="accordion-item-header">barchart -- For this panel base search and pos process search is form JS</div>
+        <div class="accordion-item-body" id="bar_chart_count_by_source"/>
+      </html>
+    </panel>
+  </row>
+  <row>
+    <panel>
+      <html>
+        <div class="accordion-item-header">SingleView--For this panel base search and pos process search is form JS</div>
+        <div class="accordion-item-body" id="count_by_sourcetype">
+          
+        </div>
+        <p>hiiii</p>
+        </html>
+    </panel>
+  </row>
+</dashboard>

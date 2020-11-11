@@ -1,0 +1,460 @@
+<form theme="dark" script="testscript.js">
+  <label>DemoDashboard</label>
+  <description>The test dashboard</description>
+  <search id="base_search">
+    <query>index=_internal</query>
+    <earliest>-24h@h</earliest>
+    <latest>now</latest>
+  </search>
+  <!--row>
+    <panel>
+      <title>Row3 panel2</title>
+      <html>
+				<h2>Selection details.</h2>
+				<table cellpadding="2" cellspacing="0">
+					<tr>
+						<th style="text-align:left; width:100px;">field</th>
+						<th style="text-align:left">value</th>
+					</tr>
+					<tr>
+						<td>CLick name: </td>
+						<td>$name$</td>
+					</tr>
+					<tr>
+						<td> CLick name2: </td>
+						<td>$name2$</td>
+					</tr>
+					<tr>
+						<td>CLick value:: </td>
+						<td>$value$</td>
+					</tr>
+
+					<tr>
+						<td>CLick values2:  </td>
+						<td>$value2$</td>
+					</tr>
+					<tr>
+						<td>COMP</td>
+						<td>$comp$</td>
+					</tr>
+						<tr>
+						<td>Earliest  </td>
+						<td>$earliest$</td>
+					</tr>
+					<tr>
+						<td>Latest:  </td>
+						<td>$latest$</td>
+					</tr>
+					
+				</table>
+			</html>
+    </panel>
+  </row-->
+  <fieldset submitButton="false" autoRun="true"></fieldset>
+  <row>
+    <panel id="bar">
+      <title>Bar Chart</title>
+      <!--<html>-->
+      <!--  <script>-->
+          
+      <!--  </script>-->
+      <!--</html>-->
+      <chart id="my_chart_id">
+        <search>
+          <query>index=_internal sourcetype=splunkd* |stats count by sourcetype</query>
+          <earliest>-24h@h</earliest>
+          <latest>now</latest>
+          <sampleRatio>1</sampleRatio>
+        </search>
+        <option name="charting.axisLabelsX.majorLabelStyle.overflowMode">ellipsisNone</option>
+        <option name="charting.axisLabelsX.majorLabelStyle.rotation">0</option>
+        <option name="charting.axisTitleX.text">sourcetypes</option>
+        <option name="charting.axisTitleX.visibility">visible</option>
+        <option name="charting.axisTitleY.visibility">collapsed</option>
+        <option name="charting.axisTitleY2.visibility">visible</option>
+        <option name="charting.axisX.abbreviation">none</option>
+        <option name="charting.axisX.scale">linear</option>
+        <option name="charting.axisY.abbreviation">none</option>
+        <option name="charting.axisY.scale">log</option>
+        <option name="charting.axisY2.abbreviation">none</option>
+        <option name="charting.axisY2.enabled">0</option>
+        <option name="charting.axisY2.scale">inherit</option>
+        <option name="charting.chart">bar</option>
+        <option name="charting.chart.bubbleMaximumSize">50</option>
+        <option name="charting.chart.bubbleMinimumSize">10</option>
+        <option name="charting.chart.bubbleSizeBy">area</option>
+        <option name="charting.chart.nullValueMode">gaps</option>
+        <option name="charting.chart.showDataLabels">none</option>
+        <option name="charting.chart.sliceCollapsingThreshold">0.01</option>
+        <option name="charting.chart.stackMode">default</option>
+        <option name="charting.chart.style">shiny</option>
+        <option name="charting.drilldown">none</option>
+        <option name="charting.layout.splitSeries">0</option>
+        <option name="charting.layout.splitSeries.allowIndependentYRanges">0</option>
+        <option name="charting.legend.labelStyle.overflowMode">ellipsisMiddle</option>
+        <option name="charting.legend.mode">standard</option>
+        <option name="charting.legend.placement">right</option>
+        <option name="charting.lineWidth">2</option>
+        <option name="height">277</option>
+        <option name="trellis.enabled">0</option>
+        <option name="trellis.scales.shared">1</option>
+        <option name="trellis.size">medium</option>
+      </chart>
+    </panel>
+  </row>
+  <row>
+    <panel>
+      <input type="link" token="viewtype" searchWhenChanged="true">
+        <label>Select View</label>
+        <choice value="column">Chart</choice>
+        <choice value="pie">Pie</choice>
+        <change>
+          <condition value="pie">
+            <set token="pie">pie</set>
+            <unset token="column"></unset>
+          </condition>
+          <condition value="column">
+            <unset token="pie"></unset>
+            <set token="column">colunm</set>
+          </condition>
+        </change>
+        <default>pie</default>
+        <initialValue>pie</initialValue>
+      </input>
+      <html>
+        <style>
+          path.highcharts-point {
+    stroke: black;
+    stroke-width: 3.5px;
+    size: 20vh;
+  }
+
+        </style>
+      </html>
+      <chart depends="$pie$">
+        <title>Pie chart</title>
+        <search base="base_search">
+          <query>| stats count by sourcetype</query>
+        </search>
+        <option name="charting.axisLabelsX.majorLabelStyle.overflowMode">ellipsisNone</option>
+        <option name="charting.axisLabelsX.majorLabelStyle.rotation">-45</option>
+        <option name="charting.axisLabelsY.majorUnit">100</option>
+        <option name="charting.axisTitleX.text">Sourcetype</option>
+        <option name="charting.axisTitleY.text">Count</option>
+        <option name="charting.axisY.abbreviation">auto</option>
+        <option name="charting.axisY.minimumNumber">200</option>
+        <option name="charting.axisY.scale">linear</option>
+        <option name="charting.chart">pie</option>
+        <option name="charting.chart.nullValueMode">gaps</option>
+        <option name="charting.chart.showDataLabels">all</option>
+        <option name="charting.chart.showPercent">true</option>
+        <option name="charting.chart.showLabels">true</option>
+        <option name="charting.drilldown">all</option>
+        <option name="charting.layout.splitSeries">1</option>
+        <option name="charting.layout.splitSeries.allowIndependentYRanges">0</option>
+        <option name="charting.legend.labelStyle.overflowMode">ellipsisMiddle</option>
+        <option name="charting.legend.mode">standard</option>
+        <option name="charting.legend.placement">bottom</option>
+        <option name="height">356</option>
+        <option name="refresh.display">progressbar</option>
+        <option name="link.visible">false</option>
+        <option name="link.openSearch.visible">true</option>
+      </chart>
+      <chart depends="$column$">
+        <title>Column chart</title>
+        <search base="base_search">
+          <query>| stats count by sourcetype</query>
+        </search>
+        <option name="charting.axisLabelsX.majorLabelStyle.overflowMode">ellipsisNone</option>
+        <option name="charting.axisLabelsX.majorLabelStyle.rotation">-45</option>
+        <option name="charting.axisLabelsY.majorUnit">100</option>
+        <option name="charting.axisTitleX.text">Sourcetype</option>
+        <option name="charting.axisTitleY.text">Count</option>
+        <option name="charting.axisY.abbreviation">auto</option>
+        <option name="charting.axisY.minimumNumber">200</option>
+        <option name="charting.axisY.scale">linear</option>
+        <option name="charting.chart">column</option>
+        <option name="charting.chart.nullValueMode">gaps</option>
+        <option name="charting.chart.showDataLabels">all</option>
+        <option name="charting.drilldown">all</option>
+        <option name="charting.layout.splitSeries">1</option>
+        <option name="charting.layout.splitSeries.allowIndependentYRanges">0</option>
+        <option name="charting.legend.labelStyle.overflowMode">ellipsisMiddle</option>
+        <option name="charting.legend.mode">standard</option>
+        <option name="charting.legend.placement">bottom</option>
+        <option name="height">356</option>
+        <option name="refresh.display">progressbar</option>
+      </chart>
+    </panel>
+    <panel>
+      <input type="time" token="field1" searchWhenChanged="true">
+        <label>select time</label>
+        <default>
+          <earliest>-24h@h</earliest>
+          <latest>now</latest>
+        </default>
+      </input>
+      <chart>
+        <search>
+          <query>index="_internal" sourcetype=splunkd
+| timechart span=1h count by component</query>
+          <earliest>$field1.earliest$</earliest>
+          <latest>$field1.latest$</latest>
+        </search>
+        <option name="charting.axisY2.enabled">1</option>
+        <option name="charting.axisY2.scale">log</option>
+        <option name="charting.chart">column</option>
+        <option name="charting.chart.overlayFields">Metrics,LMTracker,PeriodicHealthReporter,ExecProcessor</option>
+        <option name="charting.chart.stackMode">stacked100</option>
+        <option name="charting.drilldown">all</option>
+        <option name="charting.fieldColors">{"Metrics":#FF0000}</option>
+        <option name="charting.fieldDashStyles">{"Metrics": "shortDash"}</option>
+        <option name="charting.layout.splitSeries">0</option>
+        <option name="charting.legend.labelStyle.overflowMode">ellipsisNone</option>
+        <option name="charting.legend.placement">right</option>
+        <option name="refresh.display">progressbar</option>
+        <drilldown>
+          <set token="name">$click.name$</set>
+          <set token="name2">$click.name2$</set>
+          <set token="value">$click.value$</set>
+          <set token="value2">$click.value2$</set>
+          <set token="comp">$row.component$</set>
+          <set token="earliest">$earliest$</set>
+          <set token="latest">$latest$</set>
+        </drilldown>
+      </chart>
+      <html>
+				<h2>Selection details.</h2>
+				<table cellpadding="2" cellspacing="0">
+					<tr>
+						<th style="text-align:left; width:100px;">Fields</th>
+						<th style="text-align:left">CLick name</th>
+                        <th style="text-align:left">CLick name2</th>
+                        <th style="text-align:left">CLick value</th>
+                        <th style="text-align:left">CLick value2</th>
+                        <th style="text-align:left">COMP</th>
+                        <th style="text-align:left">Earliest</th>
+                        <th style="text-align:left">Latest</th>
+					</tr>
+					<tr>
+						<td>Values</td>
+						<td>$name$</td>
+						<td>$name2$</td>
+						<td>$value$</td>
+						<td>$value2$</td>
+						<td>$comp$</td>
+						<td>$earliest$</td>
+						<td>$latest$</td>
+					</tr>
+					
+				</table>
+			</html>
+    </panel>
+  </row>
+  <row depends="$alwayshideCSS$">
+    <panel>
+      <title>Row3 panel2</title>
+      <html>
+				<h2>Selection details.</h2>
+				<table cellpadding="2" cellspacing="0">
+					<tr>
+						<th style="text-align:left; width:100px;">field</th>
+						<th style="text-align:left">value</th>
+					</tr>
+					<tr>
+						<td>CLick name: </td>
+						<td>$name$</td>
+					</tr>
+					<tr>
+						<td> CLick name2: </td>
+						<td>$name2$</td>
+					</tr>
+					<tr>
+						<td>CLick value:: </td>
+						<td>$value$</td>
+					</tr>
+
+					<tr>
+						<td>CLick values2:  </td>
+						<td>$value2$</td>
+					</tr>
+					<tr>
+						<td>COMP</td>
+						<td>$comp$</td>
+					</tr>
+						<tr>
+						<td>Earliest  </td>
+						<td>$earliest$</td>
+					</tr>
+					<tr>
+						<td>Latest:  </td>
+						<td>$latest$</td>
+					</tr>
+					
+				</table>
+			</html>
+      <html>
+         <style>
+table{ 
+    border: 1px solid #ddd;
+    border-collapse: separate;
+    border-left: 0;
+    background-color: #85C1E9 !important;
+    border-radius: 4px;
+    border-spacing: 0px;
+    font-style: italic;
+    }
+           table thead tr th,td{
+           font-size:110% !important;
+           color:#D3FC00;
+           <!--text-shadow:1px 1px 2px #FADBD8;-->
+           width:80px !important;
+           
+           border: 1px solid #154360 !important;
+           text-align: left !important
+           }
+           table thead tr th{
+            font-weight: bold !important;
+           }
+           table thead th{font-style: italic;font-family:Impact, Charcoal, sans-serif;}
+          
+         </style>
+         
+       </html>
+    </panel>
+  </row>
+  <row>
+    <panel>
+      <title>Row2 panel1</title>
+      <table>
+        <title>Table</title>
+        <search base="base_search">
+          <query> | stats count(source) as c1, count(host) as  c2 by sourcetype</query>
+        </search>
+        <option name="count">10</option>
+        <option name="dataOverlayMode">none</option>
+        <option name="drilldown">none</option>
+        <option name="percentagesRow">false</option>
+        <option name="rowNumbers">false</option>
+        <option name="totalsRow">false</option>
+        <option name="wrap">true</option>
+      </table>
+    </panel>
+    <panel>
+      <title>Row2 panel2</title>
+      <table>
+        <title>Sparkline</title>
+        <search base="base_search">
+          <query>|  chart count sparkline(count, 1h) as trend_bar sparkline(count,2h) as trend_line by sourcetype</query>
+        </search>
+        <option name="drilldown">row</option>
+        <option name="refresh.display">progressbar</option>
+        <format field="trend_bar" type="sparkline">
+          <option name="type">bar</option>
+          <option name="barWidth">10px</option>
+          <option name="colorMap">
+            <option name="2000:">#5379AF</option>
+            <option name=":1999">#9ac23c</option>
+          </option>
+        </format>
+        <format type="sparkline" field="trend_line">
+          <option name="type">line</option>
+          <option name="fillColor">red</option>
+          <option name="lineColor">yellow</option>
+          <option name="lineWidth">3</option>
+        </format>
+        <drilldown>
+          <set token="name">$click.name$</set>
+          <set token="name2">$click.name2$</set>
+          <set token="value">$click.value$</set>
+          <set token="value2">$click.value2$</set>
+          <set token="comp">$row.count$</set>
+          <set token="earliest">$earliest$</set>
+          <set token="latest">$latest$</set>
+        </drilldown>
+      </table>
+      <html>
+				<h2>Selection details.</h2>
+				<table cellpadding="2" cellspacing="0">
+					<tr>
+						<th style="text-align:left; width:100px;">Fields</th>
+						<th style="text-align:left">CLick name</th>
+                        <th style="text-align:left">CLick name2</th>
+                        <th style="text-align:left">CLick value</th>
+                        <th style="text-align:left">CLick value2</th>
+                        <th style="text-align:left">Row click</th>
+                        <th style="text-align:left">Earliest</th>
+                        <th style="text-align:left">Latest</th>
+					</tr>
+					<tr>
+						<td>Values</td>
+						<td>$name$</td>
+						<td>$name2$</td>
+						<td>$value$</td>
+						<td>$value2$</td>
+						<td>$comp$</td>
+						<td>$earliest$</td>
+						<td>$latest$</td>
+					</tr>
+				</table>
+			</html>
+    </panel>
+  </row>
+  <row>
+    <panel>
+      <html>
+        <div class="icon-user">
+          <p>
+            icon class and color:
+            <i class="icon-user" style="font-size:3em; color:#FF0000"/>
+          </p>
+        <a href="http://localhost:8001/en-US/static/docs/style/style-guide.html" target="_new">click link to move to style guide page</a>
+        </div>
+        <!--div class="modal hide fade" id="myModal">
+              <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">Modal</button>
+                  <h3>Modal header</h3>
+              </div>
+              <div class="modal-body">
+                  <p>One fine body…</p>
+              </div>
+              <div class="modal-footer">
+                  <a href="#" class="btn">Close</a>
+                  <a href="#" class="btn btn-primary">Save changes</a>
+              </div>
+        </div-->
+      </html>
+    </panel>
+  </row>
+  <row>
+    <panel>
+      <event>
+        <title>Event</title>
+        <search>
+          <query>index=_internal sourcetype="splunkd_ui_access" | rex " makula \[(?&lt;timestamp&gt;.*)\]"
+| table _time,_raw|search timestamp="$mytok$"</query>
+        </search>
+        <option name="list.drilldown">none</option>
+        <option name="refresh.display">progressbar</option>
+      </event>
+    </panel>
+  </row>
+  <row>
+    <panel>
+      <table>
+        <search>
+          <query>index=_internal sourcetype="splunkd_ui_access" 
+| rex " makula \[(?&lt;timestamp&gt;.*)\]"
+| table timestamp, _raw</query>
+          <earliest>-24h@h</earliest>
+          <latest>now</latest>
+        </search>
+        <option name="drilldown">cell</option>
+        <option name="refresh.display">progressbar</option>
+        <drilldown>
+          <set token="mytok">$row.timestamp$</set>
+        </drilldown>
+      </table>
+    </panel>
+  </row>
+</form>

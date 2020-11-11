@@ -1,0 +1,20 @@
+.up {
+    background-color: blueviolet;
+    background-repeat: no-repeat;
+    background-size: 20px 20px; 
+}
+.down {
+    background-image: url('/static/app/search/bird.jpg');
+    background-repeat: no-repeat;
+    background-size: 20px 20px;
+}
+.unknown {
+    background-image: url('/static/app/search/images/question-circle.png');
+    background-repeat: no-repeat;
+    background-size: 20px 20px;
+}
+.warn {
+    background-image: url('/static/app/search/images/warn.png');
+    background-repeat: no-repeat;
+    background-size: 20px 20px;
+}

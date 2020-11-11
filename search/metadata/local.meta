@@ -1,0 +1,90 @@
+[alert_actions/email]
+owner = makula
+version = 8.0.5
+modtime = 1600180028.998009600
+
+[indexes/demo_index]
+owner = makula
+version = 8.1.0
+modtime = 1604986560.525747900
+
+[savedsearches/MYDEMOREPORT]
+access = read : [ * ]
+export = none
+owner = mahesh
+version = 8.0.5
+modtime = 1600174321.075985800
+
+[views/demodashboard]
+owner = makula
+version = 8.1.0
+modtime = 1604930546.228639300
+
+[inputs/gitforsplunk%3A%2F%2FTest_Splunk_Git]
+owner = makula
+version = 8.0.5
+modtime = 1600173722.421006000
+
+[app/ui]
+version = 8.0.5
+modtime = 1602864120.500149100
+
+[app/launcher]
+version = 8.0.5
+modtime = 1602864120.509162900
+
+[app/package/check_for_updates]
+version = 8.0.5
+modtime = 1602864120.516107400
+
+[views/idx_internal_dashboard]
+access = read : [ * ], write : [ * ]
+export = system
+owner = makula
+version = 8.0.5
+modtime = 1604319909.397581800
+
+[nav/default]
+version = 8.0.5
+modtime = 1601540253.410831300
+
+[inputs/http%3A%2F%2Fdemohttp]
+access = read : [ admin ], write : [ admin ]
+export = none
+owner = makula
+version = 8.0.5
+modtime = 1602490100.140350100
+
+[inputs/monitor%3A%2F%2FC%3A%5CUsers%5Cmahesh.akula%5CDesktop%5CSplunk%5CTestdata]
+owner = makula
+version = 8.0.5
+modtime = 1602685456.328441800
+
+[props/xmlsourcetype]
+owner = makula
+version = 8.0.5
+modtime = 1602685967.663434400
+
+[views/testdashboard_js_css]
+access = read : [ * ], write : [ * ]
+export = system
+owner = makula
+version = 8.0.5
+modtime = 1602863540.595248600
+
+[inputs/monitor%3A%2F%2FC%3A%5CUsers%5Cmahesh.akula%5CDesktop%5CSplunk%5CTestdata%5Ctempdata.csv]
+owner = makula
+version = 8.0.5
+modtime = 1603430654.251167700
+
+[views/collapsible_dashboard_wfw]
+access = read : [ * ], write : [ * ]
+export = system
+owner = mahesh
+version = 8.1.0
+modtime = 1604988915.510966100
+
+[inputs/monitor%3A%2F%2FC%3A%5CUsers%5Cmahesh.akula%5CDesktop%5CSplunk%5CTestdata%5Cdata_store.csv]
+owner = mahesh
+version = 8.1.0
+modtime = 1605004038.857989900
