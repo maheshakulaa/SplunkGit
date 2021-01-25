@@ -1,0 +1,18 @@
+.inlinee{
+        display: inline-block;
+        border: 2px dotted #91FF33;
+		background-color: #FFB433;
+        width: 20%;
+        padding: 6px 12px;
+        margin-bottom: 0;
+        font-size: 12px;
+		font: italic small-caps bold 12px/30px Georgia, serif;
+        font-weight: 400;
+        line-height: 1.1;
+        text-align: left;
+        vertical-align: middle;
+        cursor: pointer;
+        background-image: none;
+        border-radius: 0px;
+		box-decoration-break: clone;
+}

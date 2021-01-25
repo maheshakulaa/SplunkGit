@@ -1,0 +1,236 @@
+/* #count_by_sourcetype_source{
+
+    font-weight: bold;
+    stroke:lightcoral   ;
+    font-size: 25px;
+}
+
+#count_by_sourcetype{
+
+    background-color: aqua;
+} */
+path.highcharts-point {
+  stroke: #353d68;
+  stroke-width: 3.5px;
+  size: 20vh;
+}
+
+
+.highcharts-background {
+  fill: #353d68 !important;
+}
+
+g.highcharts-axis.highcharts-yaxis text
+, g.highcharts-axis.highcharts-xaxis text {
+     color: white !important;
+    fill: white !important;
+}
+g text {
+  stroke:white;
+}
+
+
+.view-mode .dashboard-row .dashboard-cell  .dashboard-panel {
+box-shadow: 1px 1px 15px rgb(0, 0, 0, 0.6);
+margin-right: 0;
+}
+
+
+#singlevalue{
+  fill: #353d68;
+}
+
+.dashboard-row  .dashboard-cell .dashboard-panel  {
+  color: white;
+  padding: 10px;
+  text-align: center;
+  font-weight: 500;
+  background-color: #353d68;
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
+  border-radius: 10px;
+}
+
+p {
+  color: white;
+}
+
+.svg-container {
+padding-top: 50px;
+}
+
+
+g text {
+stroke: white;
+}
+
+text {
+display: block;
+white-space: pre-line;
+}
+#singlevalue {
+fill: #353d68;
+height: max-content;
+}
+
+.dashboard-row .dashboard-panel .panel-body .splunk-single {
+min-height: 40px;
+text-align: center;
+padding-bottom: 50px;
+}
+
+#row1 #panel1{
+width:20% !important;
+}
+#row1 #panel2{
+width:80% !important;
+}
+
+#row2 #panel3{
+width:25% !important;
+}
+#row2 #panel4{
+width:50% !important;
+}
+#row2 #panel5{
+width:25% !important;
+}
+
+
+
+
+/*=================================*/
+
+
+div.icon-user {
+border: 1px solid #ffffff;
+right: 10px;
+bottom: 20px;
+text-align: center;
+border-radius: 50%;
+width: 15px;
+height: 15px;
+font-size: 14px;
+cursor: pointer;
+position: absolute;
+z-index: 1000;
+line-height: 10px;
+}
+
+div.icon-user:before {
+font-weight: bold;
+color: #ffffff;
+}
+
+div.icon-user:hover p {
+display: block;
+transform-origin: 50% 0%;
+-webkit-animation: fadeIn 0.3s ease-in-out;
+animation: fadeIn 0.3s ease-in-out;
+}
+
+div.icon-user p {
+padding-left: 10px !important;
+padding-top: 10px !important;
+padding-bottom: 10px !important;
+padding-right: 10px !important;
+text-align: left;
+right: -10%;
+display: none;
+background-color: #f1f1f1;
+width: 250px;
+position: absolute;
+border-radius: 3px;
+box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+color: #425d7f;
+font-size: 12px;
+}
+
+div.icon-user p:before {
+position: absolute;
+content: '';
+width: 0;
+height: 0;
+border: 6px solid transparent;
+border-bottom-color: #425d7f;
+right: 2%;
+top: -12px;
+}
+
+div.icon-user p:after {
+width: 100%;
+height: 40px;
+content: '';
+position: absolute;
+top: -45px;
+left: 0;
+}
+
+div.icon-user i {
+    padding-left: 2px !important;
+    padding-top: 2px !important;
+    padding-bottom: 2px !important;
+    padding-right: 2px !important;
+    text-align: left;
+    right: 10px;
+    display: block;
+    background-color: black;
+    font-size: 5px;
+    width: 10px;
+    position: static;
+    border-radius: 3px;
+    box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+    color: #425d7f;
+    
+}
+
+div[data-test^="popover"] {
+  box-sizing: content-box;
+  -webkit-box-sizing: inherit;
+}
+/*##########################################*/
+
+.accordion-item-header{
+    padding: 0.5rem 3rem 0.5rem 1rem;
+    min-height: 3.5rem;
+    line-height: 1.25rem;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    position: relative;
+    cursor: pointer;
+}
+
+.accordion-item-header::after{
+    content: "+";
+    position: absolute;
+    right: 1rem;
+    font-size: 2rem;
+}
+
+.accordion-item-header.active::after{
+    content: "\2212"
+}
+
+.accordion-item-body {
+    display: block;
+    padding: 1rem;
+    line-height: 1.5rem;
+    border-top: 3px solid;
+    border-image: linear-gradient(to right, transparent, #34495e, transparent) 1;
+}
+
+
+.accordion-item-header.active + .accordion-item-body{
+    display: none;
+}
+
+/* .accordion-item-header.active + #row1 #panel1 #panel2{
+  height: 10px;
+} */
+
+@media(max-width:767px){
+    html {
+        font-size: 14px;
+    }
+}

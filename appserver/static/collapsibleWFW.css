@@ -1,0 +1,238 @@
+
+.accordion-item-header{
+    padding: 0.5rem 1rem 0.5rem 1rem;
+    min-height: 2.5rem;
+    line-height: 1rem;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    position: relative;
+    cursor: pointer;
+}
+
+/* BULLB EFFECT START */
+.accordion-item-header:hover, .accordion-item-body:hover{
+  cursor: pointer;
+  -webkit-box-reflect: below 1px linear-gradient(transparent,#0008);
+  line-height: 0.70em;
+  color: white;
+  outline: none;
+  animation: animate 5s  linear infinite;
+}
+
+@keyframes animate
+{
+    /* 0%,18%,20%,50.1%,60%,65.1%,80%,90.1%,92%
+    {
+        color: #0e3742;
+        box-shadow: none;
+    } */
+    0%,18%,20%,50.1%,60%,65.1%,80%,90.1%,92%,18.1%,20.1%,30%,50%,60.1%,65%,80.1%,90%,92.1%,100%
+{
+    color: white;
+    box-shadow: 0 0 10px #03bcf4,
+    0 0 20px #03bcf4,
+    0 0 40px #03bcf4,
+    0 0 80px #03bcf4,
+    0 0 160px #03bcf4;
+    
+}
+}
+/* BULLB EFFECT END */
+.accordion-item-header::after{
+    content: "\27A4";
+    position: absolute;
+    right: 1rem;
+    font-size: 1rem;
+    transition: transform 0s ease;
+    transform: rotate(90deg);
+}
+
+.accordion-item-header.active::after{
+  transform: rotate(270deg);
+}
+
+.accordion-item-body {
+    display: block;
+    padding: 1rem;
+    line-height: 1.5rem;
+    border-top: 3px solid;
+    border-image: linear-gradient(to right, transparent, #009C25 , transparent) 1;
+}
+
+
+.accordion-item-header.active + .accordion-item-body{
+    display: none;
+}
+
+.dashboard-row .dashboard-panel .panel-body > .accordion-item-header.active {
+    overflow: hidden;
+    clear: both;
+    height: 10px;
+}
+
+/* .accordion-item-header.active + #row1 #panel1 #panel2{
+  height: 10px;
+} */
+
+.dashboard-row .dashboard-panel, element.style {
+    min-height: 10px !important;
+}
+/*===========================coloring effect start=======*/
+path.highcharts-point {
+    stroke: #353d68;
+    stroke-width: 3.5px;
+    size: 20vh;
+  }
+  
+  
+  .highcharts-background {
+    fill: #353d68 !important;
+  }
+  
+  g.highcharts-axis.highcharts-yaxis text
+  , g.highcharts-axis.highcharts-xaxis text {
+       color: white !important;
+      fill: white !important;
+  }
+  g text {
+    stroke:white;
+  }
+  
+  
+  .view-mode .dashboard-row .dashboard-cell  .dashboard-panel {
+  box-shadow: 1px 1px 15px rgb(0, 0, 0, 0.6);
+  margin-right: 0;
+  }
+
+  
+.dashboard-row  .dashboard-cell .dashboard-panel  {
+    color: white;
+    padding: 10px;
+    text-align: center;
+    font-weight: 500;
+    background-color: #353d68;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+    border-radius: 10px;
+  }
+  
+  p {
+    color: white;
+  }
+  
+  .svg-container {
+  padding-top: 50px;
+  }
+  
+  
+  g text {
+  stroke: white;
+  }
+  
+  text {
+  display: block;
+  white-space: pre-line;
+  }
+  #singlevalue {
+  fill: #353d68;
+  height: max-content;
+  }
+  
+  .dashboard-row .dashboard-panel .panel-body .splunk-single {
+  min-height: 40px;
+  text-align: center;
+  padding-bottom: 50px;
+  }
+
+/* 
+  #row1.dashboard-row #panel1 .dashboard-panel .panel-head h3 {
+    line-height: 1;
+    margin: 0;
+    padding: 12px 55px 10px 12px;
+    text-rendering: initial;
+    word-wrap: break-word;
+    font-weight: bold;
+    font-size: 50px;
+    color: white;
+    text-align: left;
+}
+
+#row1.dashboard-row #panel2 .dashboard-panel .panel-head h3 {
+  line-height: 1;
+  margin: 0;
+  padding: 12px 55px 10px 12px;
+  text-rendering: initial;
+  word-wrap: break-word;
+  font-weight: bold;
+  font-size: 50px;
+  color: red;
+  text-align: right;
+} */
+
+  
+        /* table color start */
+        .table caption + thead tr:first-child td,
+.table caption + thead tr:first-child th,
+.table colgroup + thead tr:first-child td,
+.table colgroup + thead tr:first-child th,
+.table thead:first-child tr:first-child td,
+.table thead:first-child tr:first-child th {
+  background-color: #353d68;
+  color: white;
+  border: none;
+  font: bold;
+}
+
+.dashboard-row .dashboard-panel .panel-body .table-row-expanding > tbody > tr > td.expands a,
+.dashboard-row .dashboard-panel .panel-body .table-row-expanding th.col-info,
+.dashboard-row .dashboard-panel .panel-body .results-table table tr > td:first-child,
+.dashboard-row .dashboard-panel .panel-body .results-table table tr > th:first-child {
+  padding-left: 12px;
+  background: #353d68;
+  color: white;
+  font-family: 'MuliFontTA', Arial, sans-serif;
+  text-align: left;
+}
+  .dashboard-row .dashboard-panel .panel-body .splunk-table .splunk-paginator {
+    background: #353d68;
+    float: right;
+    padding-right: 5px;
+    margin-bottom: 0px;
+  }
+  .dashboard-row .dashboard-panel .panel-body .results-table table tr > td:last-child,
+.dashboard-row .dashboard-panel .panel-body .results-table table tr > th:last-child,
+.dashboard-row .dashboard-panel .panel-body .table th:last-child,
+.dashboard-row .dashboard-panel .panel-body .table td:last-child {
+  background: #353d68;
+  color: white;
+  font-family: 'MuliFontTA', Arial, sans-serif;
+  text-align: left;
+}
+.table-striped.table-chrome > tbody > tr.odd > td,
+.table-striped.table-chrome > tbody > tr:nth-child(2n).odd > td,
+.table-striped.table-chrome > tbody > tr:nth-child(odd) > td {
+  background: #353d68;
+  color: white;
+  font-family: 'MuliFontTA', Arial, sans-serif;
+  text-align: left;
+}
+
+.table-striped.table-chrome > tbody > tr.even > td,
+.table-striped.table-chrome > tbody > tr:nth-child(2n) > td,
+.table-striped.table-chrome > tbody > tr:nth-child(odd).even > td {
+  background: #353d68;
+  color: white;
+  font-family: 'MuliFontTA', Arial, sans-serif;
+  text-align: left;
+}
+    /* table color end */
+/*===========================coloring effect end=======*/
+
+
+@media(max-width:767px){
+    html {
+        font-size: 14px;
+    }
+}
+
