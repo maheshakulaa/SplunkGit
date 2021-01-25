@@ -1,0 +1,183 @@
+<dashboard script="splunkWFW.js" stylesheet="splunkWFW.css">
+  <label>SPLUNK_WFW</label>
+  <search id="basesearchxml">
+    <query>
+      index=_internal
+    </query>
+    <earliest>-24h@h</earliest>
+    <latest>now</latest>
+    <sampleRatio>1</sampleRatio>
+  </search>
+  <row>
+    <panel>
+      <html>
+                <p>SingleView--For this panel base search and pos process search is form JS</p>
+        <div class="icon-user">
+            <p>
+              <font face="Verdana" color="Black">
+              <u>
+                <b>Feature:</b>
+              </u>
+              Content<br/>
+            </font>
+                <font face="Verdana" color="Black">
+              <u>
+                <b>Data Source:</b>
+              </u>
+            </font> <em>
+              <b>Ticket data $field1.earliest$</b>.</em>                                               
+            <br/>
+          </p>
+        </div>
+        </html>
+      <html>
+              <div id="count_by_sourcetype"/>
+      </html>
+    </panel>
+    <panel>
+      <html>
+         <p>Column Chart -- For this panel base search from XML and pos process search is form JS</p>
+         <div class="icon-user">
+            <p>
+              <font face="Verdana" color="Black">
+              <u>
+                <b>Feature:</b>
+              </u>
+              Content<br/>
+            </font>
+                <font face="Verdana" color="Black">
+              <u>
+                <b>Data Source:</b>
+              </u>
+            </font> <em>
+              <b>Ticket data $field1.earliest$</b>.</em>                                               
+            <br/>
+          </p>
+        </div>
+        </html>
+      <html>
+        <div id="count_by_sourcetype_source"/>
+      </html>
+    </panel>
+  </row>
+  <row>
+    <panel>
+      <html>
+        <p>Pie chart --For this panel base search and pos process search is form JS </p>
+        <div class="icon-user">
+            <p>
+              <font face="Verdana" color="Black">
+              <u>
+                <b>Feature:</b>
+              </u>
+              Content<br/>
+            </font>
+                <font face="Verdana" color="Black">
+              <u>
+                <b>Data Source:</b>
+              </u>
+            </font> <em>
+              <b>Ticket data $field1.earliest$</b>.</em>                                               
+            <br/>
+          </p>
+        </div>
+        </html>
+      <html>
+        <div id="pie_chart_count_by_source"/>
+      </html>
+    </panel>
+    <panel>
+      <html>
+        <p>Bar chart --For this panel base search and pos process search is form JS </p>
+        <div class="icon-user">
+            <p>
+              <font face="Verdana" color="Black">
+              <u>
+                <b>Feature:</b>
+              </u>
+              Content<br/>
+            </font>
+                <font face="Verdana" color="Black">
+              <u>
+                <b>Data Source:</b>
+              </u>
+            </font> <em>
+              <b>Ticket data $field1.earliest$</b>.</em>                                               
+            <br/>
+          </p>
+        </div>
+        </html>
+      <html>
+        <div id="bar_chart_count_by_source"/>
+      </html>
+    </panel>
+    <panel>
+      <html>
+        <p>line chart --For this panel base search and pos process search is form JS</p>
+        <div class="icon-user">
+            <p>
+              <font face="Verdana" color="Black">
+              <u>
+                <b>Feature:</b>
+              </u>
+              Content<br/>
+            </font>
+                <font face="Verdana" color="Black">
+              <u>
+                <b>Data Source:</b>
+              </u>
+            </font> <em>
+              <b>Ticket data $field1.earliest$</b>.</em>                                               
+            <br/>
+          </p>
+        </div>
+      </html>
+      <html>
+        <div id="line_chart_count_by_source"/>
+      </html>
+    </panel>
+  </row>
+  <row>
+    <panel>
+      <html>
+        <p>this is buildt from the dashboards inputs</p>
+        <div class="icon-user">
+            <p>
+              <font face="Verdana" color="Black">
+              <u>
+                <b>Feature:</b>
+              </u>
+              Content<br/>
+            </font>
+                <font face="Verdana" color="Black">
+              <u>
+                <b>Data Source:</b>
+              </u>
+            </font> <em>
+              <b>Ticket data $field1.earliest$</b>.</em>                                               
+            <br/>
+          </p>
+        </div>
+      </html>
+      <chart>
+        <title>Area chart</title>
+        <search>
+          <query>index=_internal sourcetype=splunkd* 
+| timechart span=30m count by sourcetype</query>
+          <earliest>-24h@h</earliest>
+          <latest>now</latest>
+        </search>
+        <option name="charting.chart">area</option>
+        <option name="charting.drilldown">none</option>
+      </chart>
+    </panel>
+  </row>
+  <row>
+    <panel>
+      <html>
+        <p>Table view </p>
+        <div id="table_view"/>
+      </html>
+    </panel>
+  </row>
+</dashboard>

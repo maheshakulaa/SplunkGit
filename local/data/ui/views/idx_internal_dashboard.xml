@@ -1,0 +1,149 @@
+<!--<form script="testscript.js,iconRender.js" stylesheet="testCSS.css,iconRender.css">--><form>
+  <label>Demo_DashboardJS</label>
+  <description>The test dashboard1</description>
+  <search id="basesearch">
+    <query>index=_internal sourcetype=splunkd</query>
+    <earliest>$field1.earliest$</earliest>
+    <latest>$field1.latest$</latest>
+  </search>
+  <fieldset submitButton="true" autoRun="false">
+    <input type="time" token="field1" id="timeid">
+      <label>Select time range</label>
+      <default>
+        <earliest>-24h@h</earliest>
+        <latest>now</latest>
+      </default>
+    </input>
+  </fieldset>
+  <row>
+    <panel>
+      <title>row 1 panel 1</title>
+      <html>
+        <div class="icon-user">
+          <i class="icon-user" style="font-size:1em; color:green"/>
+              <p style="background-color:AliceBlue;">
+              <font face="Verdana" color="Black">
+              <u>
+                <b>Feature:</b>
+              </u>
+              Content<br/>
+            </font>
+                <font face="Verdana" color="Black">
+              <u>
+                <b>Data Source:</b>
+              </u>
+            </font> <em>
+              <b>Ticket data $field1.earliest$</b>.</em>                                               
+            <br/>
+          </p>
+        </div>
+        </html>
+      <table id="splunk_table">
+        <title>Chart...</title>
+        <search base="basesearch">
+          <query>| dedup source |table source,sourcetype</query>
+        </search>
+        <option name="drilldown">none</option>
+        <option name="refresh.display">progressbar</option>
+      </table>
+    </panel>
+    <panel>
+      <title>Row2 panel1</title>
+      <input type="link" token="field2">
+        <label>field2</label>
+      </input>
+      <html>
+        <div class="icon-user">
+          <i class="icon-user" style="font-size:1em; color:#FF0000; background-color: yellow"/>
+              <p style="background-color:AliceBlue;">
+              <font face="Verdana" color="Black">
+              <u>
+                <b>Feature:</b>
+              </u>
+              Content<br/>
+            </font>
+                <font face="Verdana" color="Black">
+              <u>
+                <b>Data Source:</b>
+              </u>
+            </font> <em>
+              <b>Ticket data $field1.earliest$</b>.</em>                                               
+            <br/>
+          </p>
+        </div>
+        </html>
+      <chart>
+        <title>Table</title>
+        <search base="basesearch">
+          <query>| stats count as c1 by source</query>
+        </search>
+        <option name="charting.axisY.scale">log</option>
+        <option name="charting.chart">bar</option>
+        <option name="charting.chart.showDataLabels">minmax</option>
+        <option name="charting.drilldown">none</option>
+        <option name="charting.layout.splitSeries">1</option>
+        <option name="refresh.display">progressbar</option>
+      </chart>
+    </panel>
+    <panel>
+      <input type="link" token="field3">
+        <label>field3</label>
+      </input>
+      <table>
+        <search>
+          <query>| makeresults | eval A="UP" | eval B="DOWN" | eval C="UNKNOWN" | eval D="N/A" | eval E="WARN" | eval F="UP" |eval G="DOWN"| fields - _time</query>
+          <earliest>-24h@h</earliest>
+          <latest>now</latest>
+        </search>
+        <option name="drilldown">none</option>
+      </table>
+<html>
+	<body>
+	<a href="http://localhost:8001/en-US/app/search/search?q=index=_internal sourcetype=splunkd" target="_blank" class="ssl_button">SUBMIT</a>
+	</body>
+</html>
+    </panel>
+  </row>
+  <row>
+    <panel>
+      <html>
+        <style>
+          tr td{
+          font:50px;
+          }
+        </style>
+      </html>
+      <table>
+        <search>
+          <query>| makeresults 
+| eval raw="{\"value\":{\"customer\":{\"businessName\":\"test\"},\"deliveryLocation\":{\"addressType\":\"Street Address\",\"addressId\":\"427716301\"},\"deliveryContact\":{\"mobile\":\"0416710996\",\"lastName\":\"mahajan\",\"firstName\":\"ruchika\"}},\"op\":\"Modify\"};{\"value\":{\"customer\":{\"businessName\":\"test\"},\"deliveryLocation\":{\"addressType\":\"Street Address\",\"addressId\":\"427716301\"},\"deliveryContact\":{\"mobile\":\"0416710996\",\"lastName\":\"mahajan\",\"firstName\":\"ruchika\"}},\"op\":\"Modify\"};{\"value\":{\"customer\":{\"businessName\":\"prod\"},\"deliveryLocation\":{\"addressType\":\"Street Address\",\"addressId\":\"427716301\"},\"deliveryContact\":{\"mobile\":\"0416710996\",\"lastName\":\"mahajan\",\"firstName\":\"ruchika\"}},\"op\":\"done\"};{\"value\":{\"customer\":{\"businessName\":\"test\"},\"deliveryLocation\":{\"addressType\":\"Street Address\",\"addressId\":\"427716301\"},\"deliveryContact\":{\"mobile\":\"0416710996\",\"lastName\":\"mahajan\",\"firstName\":\"ruchika\"}},\"op\":\"done\"}" 
+| makemv delim=";" raw 
+| mvexpand raw 
+| spath input=raw
+| table op, "value.customer.businessName" "value.deliveryContact.firstName"
+| dedup op "value.customer.businessName"
+
+| foreach op      [ eval &lt;&lt;FIELD&gt;&gt;=case(like(op,"Modify%"),'&lt;&lt;FIELD&gt;&gt;'+".TIER1",like(op,"done%"),'&lt;&lt;FIELD&gt;&gt;'+".TIER2",1=1,'&lt;&lt;FIELD&gt;&gt;') ] 
+| foreach op 
+    [ makemv delim="." &lt;&lt;FIELD&gt;&gt; 
+    | mvexpand op]
+| foreach *      [ eval &lt;&lt;FIELD&gt;&gt;=case(like(op,"TIER1"),"TIER1",like(op,"TIER2"),"TIER2",1=1,'&lt;&lt;FIELD&gt;&gt;') ] 
+| dedup op "value.customer.businessName" 
+| sort op "value.customer.businessName"
+| eval op=case(like('op',"TIER1"),"tier1",like('op',"TIER2"),"tier2",1=1,'op')
+| foreach * 
+    [  eval &lt;&lt;FIELD&gt;&gt;=case(like('&lt;&lt;FIELD&gt;&gt;',"TIER1")," ",like('&lt;&lt;FIELD&gt;&gt;',"TIER2")," ",1=1,'&lt;&lt;FIELD&gt;&gt;')]</query>
+          <earliest>-24h@h</earliest>
+          <latest>now</latest>
+        </search>
+        <option name="drilldown">none</option>
+        <format type="color" field="op">
+          <colorPalette type="map">{"tier1":#4FA484,"tier2":#4FA484}</colorPalette>
+        </format>
+        <format type="color" field="%">
+          <colorPalette type="map">{" ":#4FA484}</colorPalette>
+        </format>
+      </table>
+    </panel>
+  </row>
+</form>

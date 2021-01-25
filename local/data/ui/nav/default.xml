@@ -1,0 +1,11 @@
+<nav search_view="search" color="#6E8CF5">
+  <view name="search" default="true" />
+  <view name="analytics_workspace" />
+  <view name="datasets" />
+  <view name="reports" />
+  <view name="alerts" />
+  <view name="dashboards" />
+	<collection label="List dashboards">
+		<view name="demodashboard" />
+	</collection>
+</nav>
